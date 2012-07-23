@@ -49,18 +49,18 @@ char * read_program(char *prog){
 int main(int argc, char* argv[]){
   char *p,*init_ptr;
   stack frame;
-  int prog;
   char *instr_ptr;
   char *temp_iptr,*init_iptr;
 
+  instr_ptr = init_iptr = read_program(argv[1]);
   frame.top = 0;
   p = init_ptr = (char*) malloc(sizeof(char)*MEM_SIZE);
   memset(p,0,MEM_SIZE);
-  instr_ptr = init_iptr = read_program(argv[1]);
 
   printf("==== Brain suck ===\n\n");
 
   while(*instr_ptr){
+    //    printf("%d:%u:%c\n",*p,p,*instr_ptr);
     switch(*instr_ptr){
     case '+':
       (*p)++;
@@ -111,7 +111,6 @@ int main(int argc, char* argv[]){
       instr_ptr++;
     }
   }
-  close(prog);
   free(init_iptr);
   free(init_ptr);
   return 0;
